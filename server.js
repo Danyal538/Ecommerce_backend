@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["https://ecommerce-app-gqch.vercel.app/", "https://ecommerce-app-admin-panel.vercel.app/"],
     credentials: true,
     allowedHeaders: ["Content-type", "Authorization"]
 
