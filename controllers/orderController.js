@@ -15,8 +15,8 @@ const placeOrder = async (req, res) => {
             items: req.body.items,
             amount: req.body.amount,
             address: req.body.address,
-            paymentMethod: "Stripe",
-            payment
+            paymentMethod: req.body.paymentMethod,
+            payment: req.body.payment
         })
 
 
