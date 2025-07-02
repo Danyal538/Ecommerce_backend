@@ -7,7 +7,6 @@ import dotenv from "dotenv"
 dotenv.config();
 
 const createToken = (id) => {
-    console.log("SECRET USED FOR SIGN:", process.env.SECRET);
     return jwt.sign({ id }, process.env.SECRET);
 }
 
@@ -29,7 +28,7 @@ export const loginUser = async (req, res) => {
     } catch (error) {
         res.json({ success: false, message: "Error in login", error })
     }
-}
+};
 
 //sign-up
 export const registerUser = async (req, res) => {
@@ -61,11 +60,11 @@ export const registerUser = async (req, res) => {
         res.json({ success: true, token, user: newUser });
 
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in registering user", error });
     }
-}
+};
 
+//logout
 export const logout = async (req, res) => {
     try {
         res.clearCookie("token", {
@@ -75,11 +74,11 @@ export const logout = async (req, res) => {
         });
         res.json({ success: true, message: "Logged out successfully" });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ success: false, message: "Error during logout", error });
+        res.json({ success: false, message: "Error during logout", error });
     }
 };
 
+//getProfile
 export const getProfile = async (req, res) => {
     try {
         const user = await userModel.findById(req.userId);
@@ -90,4 +89,4 @@ export const getProfile = async (req, res) => {
     } catch (error) {
         res.json({ success: false })
     }
-}
+};

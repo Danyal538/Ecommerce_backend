@@ -31,7 +31,6 @@ const addProduct = async (req, res) => {
         res.json({ success: true, message: "Product added successfully", product });
         await product.save();
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in adding product", error })
 
     }
@@ -44,7 +43,6 @@ const allProductList = async (req, res) => {
         const products = await productModel.find({});
         res.json({ success: true, data: products })
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in getting product list" });
     }
 }
@@ -59,7 +57,6 @@ const removeProduct = async (req, res) => {
         await productModel.findByIdAndDelete(req.body.productId);
         res.json({ success: true, message: "Product Removed" });
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in removing product", error });
     }
 }
@@ -80,7 +77,6 @@ const updateProduct = async (req, res) => {
         }
         res.json({ success: true, message: "Product updated", data: updatedProduct })
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in updating product", error });
     }
 }
@@ -91,7 +87,6 @@ const getProductById = async (req, res) => {
         const product = await productModel.findById(id);
         res.json({ success: true, data: product });
     } catch (error) {
-        console.log(error);
         return res.json({ success: false, message: "Error in fetching product", error })
     }
 }

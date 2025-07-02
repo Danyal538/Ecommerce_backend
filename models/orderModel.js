@@ -19,7 +19,5 @@ const orderSchema = new mongoose.Schema({
     paymentMethod: { type: String, default: "COD" }
 })
 
-console.log("✅ Order schema loaded, address field type:", orderSchema.path('address.street').instance);
-
 const orderModel = mongoose.models.order || mongoose.model("order", orderSchema);
 export default orderModel;

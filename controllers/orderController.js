@@ -43,7 +43,6 @@ const placeOrder = async (req, res) => {
             },
             quantity: 1
         })
-        console.log("LineItems", line_items)
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
             mode: "payment",
@@ -52,7 +51,6 @@ const placeOrder = async (req, res) => {
         })
         res.json({ success: true, session: session.url });
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in placing order", error })
     }
 }
@@ -69,7 +67,6 @@ const verifyOrder = async (req, res) => {
             return res.json({ success: false, message: "Not Paid" });
         }
     } catch (error) {
-        console.log(error);
         return res.json({ success: false, message: "Error in placing order" });
     }
 }
@@ -79,7 +76,6 @@ const userOrders = async (req, res) => {
         const order = await orderModel.find({ userId: req.body.userId });
         res.json({ success: true, data: order })
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error", error })
 
     }
@@ -90,7 +86,6 @@ const listOrders = async (req, res) => {
         const orders = await orderModel.find({});
         res.json({ success: true, data: orders });
     } catch (error) {
-        console.log(error);
         res.json({ success: false, message: "Error in listing orders", error });
     }
 }
@@ -107,13 +102,9 @@ const updateStatus = async (req, res) => {
         if (!exists) {
             return res.status(404).json({ success: false, message: "Order not found" });
         }
-
         const updated = await orderModel.findByIdAndUpdate(orderId, { status }, { new: true });
-        console.log("Updated Order:", updated);
-
         res.json({ success: true, message: "Status updated", updated });
     } catch (error) {
-        console.log(error);
         res.status(500).json({ success: false, message: "Error in updating status", error });
     }
 };
