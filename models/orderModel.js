@@ -9,13 +9,14 @@ const orderSchema = new mongoose.Schema({
         lastName: { type: String },
         street: { type: String },
         city: { type: String, required: true },
-        state: { type: String},
+        state: { type: String },
         country: { type: String, required: true },
-        zipCode: {type: Number}
+        zipCode: { type: Number }
     },
     date: { type: Date, default: () => Date.now() },
     status: { type: String, default: "Order Placed" },
-    payment: { type: Boolean, default: false }
+    payment: { type: Boolean, default: false },
+    paymentMethod: { type: String, default: "COD" }
 })
 
 console.log("✅ Order schema loaded, address field type:", orderSchema.path('address.street').instance);

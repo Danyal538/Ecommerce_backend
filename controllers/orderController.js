@@ -15,6 +15,8 @@ const placeOrder = async (req, res) => {
             items: req.body.items,
             amount: req.body.amount,
             address: req.body.address,
+            paymentMethod,
+            payment
         })
 
 
@@ -68,7 +70,7 @@ const verifyOrder = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        return res.json({ success: true, message: "Error in placing order" });
+        return res.json({ success: false, message: "Error in placing order" });
     }
 }
 
